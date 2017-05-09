@@ -59,9 +59,9 @@ public class ObjectsGeneration : MonoBehaviour {
         // Roads
         for(int i = 0; i < list_roads.Count; ++i) {
             if (list_roads[i].activeSelf) {
-                float d = Vector3.Distance(list_roads[i].transform.position, car.transform.position);
+                float dist = Vector3.Distance(list_roads[i].transform.position, car.transform.position);
 
-                if(d > 25 && (car.transform.position.z > list_roads[i].transform.position.z)) {
+                if(dist > 25 && (car.transform.position.z > list_roads[i].transform.position.z)) {
                     list_roads[i].transform.position = new Vector3(list_roads[i].transform.position.x, -0.3F, ROAD_Z_START + (LAST_ROAD * ROAD_STEP));
                     LAST_ROAD += 1;
 
@@ -73,9 +73,9 @@ public class ObjectsGeneration : MonoBehaviour {
         // Buildings
         for (int i = 0; i < list_buildings  .Count; ++i) {
             if (list_buildings[i].activeSelf) {
-                float d = Vector3.Distance(list_buildings[i].transform.position, car.transform.position);
+                float dist = Vector3.Distance(list_buildings[i].transform.position, car.transform.position);
 
-                if (d > 15 && (car.transform.position.z > list_buildings[i].transform.position.z)) {
+                if (dist > 15 && (car.transform.position.z > list_buildings[i].transform.position.z)) {
                     if (list_buildings[i].transform.position.x == BUILDING_LEFT) {
                         list_buildings[i].transform.position = new Vector3(list_buildings[i].transform.position.x, 0, BUILDING_Z_START + (LAST_BUILDING_LEFT * BUILDING_STEP));
                         LAST_BUILDING_LEFT += 1;
@@ -91,9 +91,9 @@ public class ObjectsGeneration : MonoBehaviour {
         // Walls
         for (int i = 0; i < list_barriers.Count; ++i) {
             if (list_barriers[i].activeSelf) {
-                float d = Vector3.Distance(list_barriers[i].transform.position, car.transform.position);
+                float dist = Vector3.Distance(list_barriers[i].transform.position, car.transform.position);
 
-                if (d > 15 && (car.transform.position.z > list_barriers[i].transform.position.z)) {
+                if (dist > 15 && (car.transform.position.z > list_barriers[i].transform.position.z)) {
                     DestroyObjectPool(list_barriers, list_barriers[i]);
                 }
             }
@@ -152,7 +152,7 @@ public class ObjectsGeneration : MonoBehaviour {
     // Objects manipulation
     public List<GameObject> GenerateObjects(int size, GameObject prefab) {
         List<GameObject> list = new List<GameObject>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < size; i++) {
             GameObject obj = (GameObject)Instantiate(prefab);
             obj.SetActive(false);
             list.Add(obj);

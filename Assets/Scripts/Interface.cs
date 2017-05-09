@@ -26,7 +26,6 @@ public class Interface : MonoBehaviour {
         panelFinalScore.gameObject.SetActive(false);
 
         restartButton.transform.gameObject.SetActive(false);
-        restartButton.onClick.AddListener(RestartScene);
 
         carObject = this.GetComponent<ObjectsGeneration>().GetCar().GetComponent<Movement>();
     }
@@ -46,7 +45,7 @@ public class Interface : MonoBehaviour {
         } 
 	}
 
-    void RestartScene() {
+    public void RestartScene() {
         SceneManager.LoadScene("Game");
     }
 }
